@@ -5,3 +5,6 @@ alto = 480
 
 # Iniciando pantalla
 pantalla = pygame.display.set_mode((ancho,alto))
+
+while True:
+    pygame.display.flip()
