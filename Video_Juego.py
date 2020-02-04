@@ -1,3 +1,6 @@
+"""
+Iniciamos a hacer nuestro juego y comenzamos con la pantalla de juego
+"""
 import pygame
 import sys
 
@@ -7,6 +10,8 @@ alto = 480
 # Iniciando pantalla
 pantalla = pygame.display.set_mode((ancho,alto))
 
+# Cambiaremos titulo de pantalla
+pygame.display.set_caption('Juego de ladrillos')
 while True:
     # Revisar todos los eventos
     for evento in pygame.event.get():
