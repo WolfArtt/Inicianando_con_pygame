@@ -1,4 +1,5 @@
 import pygame
+import sys
 
 ancho = 640
 alto = 480
@@ -7,4 +8,9 @@ alto = 480
 pantalla = pygame.display.set_mode((ancho,alto))
 
 while True:
+    # Revisar todos los eventos
+    for evento in pygame.event.get():
+        if evento.type == pygame.QUIT:
+            sys.exit()
+
     pygame.display.flip()
