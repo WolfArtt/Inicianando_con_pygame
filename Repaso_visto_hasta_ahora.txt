@@ -88,4 +88,14 @@ Para que haya coliciones debe haber movimiento
             y antes de dibujar la bolita rellenamos la pantalla con el metodo:
                 pantalla.fill(color_que_queremos) 
             Al ejecutar de nuevo tenemos una pantalla con fondo azul y una bolita que no deja rastro
-        3.  
+        3.  La bolita se va y no regresa para evitar esto debemos invertir la velocidad de 'y'
+            cuando la parte inferior de la bolita sea mayor que el ancho de la pantalla
+            esto lo hacemos en la funcion update de la bolita comparando el bottom con el alto de pantalla
+            * Cuando hacemos correr de nuevo nuestra consola la bolita ya no se sale de la pantalla por abajo(Bottom) 
+                si no que ahora se sale por la parte derecha de la pantalla
+            * Asi que aplicamos la misma logica, que usamos para evitar que se salga por la pantalla de abajo
+            * Para evitar la fuga de la bolita por arriba debemos invertir la velocidad como antes 
+                por lo que podemos aniadir la compracion del top <= 0 en la primera condicion
+                y hacemos lo mismo para evitar la fuga de la bolita por la izquierda asi que aplicamos la compracion de <= 0
+
+        Y asi solucionamos nuestros primeros errores de colisiones para nuestro Juego :3

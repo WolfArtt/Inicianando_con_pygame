@@ -26,7 +26,13 @@ class Bolita(pygame.sprite.Sprite):
         self.speed = [3,3]
 
     def update(self):
-        
+        #Evitar que salga por debajo la bolita
+        if self.rect.bottom >= alto or self.rect.top <= 0:
+            self.speed[1] = -self.speed[1]
+
+        #Evitar que salga por la derecha
+        if self.rect.right >= ancho or self.rect.left <= 0:
+            self.speed[0] = -self.speed[0]
 
         # Mover en base a posicion actual y velocidad
         self.rect.move_ip(self.speed)
