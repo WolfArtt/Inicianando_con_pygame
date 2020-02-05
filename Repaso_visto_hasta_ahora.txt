@@ -1,0 +1,13 @@
+
+Un Sprite es un objeto visible en pantalla
+
+Se pueden cargar imagenes con pygame.image.load("subdir/imagen.png")
+
+Realiza las  operaciones con los sprites a traves de rectanhgulos(denominados rect) con coordenadas 
+
+funcion blit sirve para dibujar una superficie sobre otra en la posicion que le indicamos mediante coordenadas
+
+la esquina superior izquierda de la pantalla corresponde al punto (0,0)
+y la esquina inferior derecha de la pantalla corresponde a las coordenadas (ancho,alto)
+****************Hasta aca vimos todo hasta la parte 7****************
+
