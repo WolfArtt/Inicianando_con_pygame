@@ -73,13 +73,19 @@ Para que haya coliciones debe haber movimiento
     Despues de hacer correr nuestro script vemos tres  cosas:
         1. el movimiento ocurrio muy rapido, pues dejo una linea amarilla
         2. por que? hay una linea amarilla
-        3. donde esta la bolita?
+        3. donde esta la bolita? por que se va y no regresa?
     Explicando:
-        1. el movimiento ocurrio muy rapido pues ocurre a la velocidad que puede [procesarlo la computadora
+        1.  El movimiento ocurrio muy rapido pues ocurre a la velocidad que puede [procesarlo la computadora
                 * Para monitorear el tiempo del juego pygame ofrece un objeto reloj
                     pygame.time.Clock()
                 Ya que tenemos el reloj podemos establecer los frames por segundo justo al inicio de nuestro ciclo infinito
                 con el metodo: reloj.tick(60)
                 este 60 quiere decir que nuestro juego correra como maximo 60 veces por segundo
                 Ya podemos observar como se va construyendo la estela de nuestra bolita
-        2. 
+        2.  La linea amarilla aparece por cada bolita dibujada a travez del tiempo
+            lo que podemos hacer es rellenar la pantalla de algun color y sobre la pantalla limpia volver a dibujar los demas elementos
+            primero creamos un color en formato RGB junto con las demas variables al inicio del archivo
+            y antes de dibujar la bolita rellenamos la pantalla con el metodo:
+                pantalla.fill(color_que_queremos) 
+            Al ejecutar de nuevo tenemos una pantalla con fondo azul y una bolita que no deja rastro
+        3.  
