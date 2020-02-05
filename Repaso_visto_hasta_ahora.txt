@@ -150,3 +150,6 @@ Luego nos creamos una nueva clase llamada Muro() y dentro creamos constructores 
 hacemos la prueba colocando dos ladrillos en las coodenadas(0,0) y el otro en las coordenadas(100,100)
 Haremos el muro de ladrillos con un for, llamando a la clase ladrillos
 hacemos que nuestros ladrillos se acomoden horizontalmente y verticalmente en la pantalla
+
+--- En esta clase aprendimos ---
+que existe un contenedor de sprites, al cual podemos añadir elementos con el metodo add y permite dibujar todos los elementos del grupo con una funcion draw
