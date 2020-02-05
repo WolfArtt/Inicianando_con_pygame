@@ -11,3 +11,47 @@ la esquina superior izquierda de la pantalla corresponde al punto (0,0)
 y la esquina inferior derecha de la pantalla corresponde a las coordenadas (ancho,alto)
 ****************Hasta aca vimos todo hasta la parte 7****************
 
+
+????????????????????????????????????????????????????????????????????????
+
+                    ---video 8---
+                    
+Comenzamos a ver los atributos de un rectangulo
+
+Al agregar la bolita sin definir sus coordenadas se coloco en la posicion (0,0) de la pantalla 
+Tomando como referencia la parte superior izquierda de la pantalla que corresponde a los atributos X Y 
+Que a partir de ese punto se calcula su ancho en el eje X y su alto en el eje Y
+
+
+Tambien se puede usar una tupla para establecer el tamanio
+En la leccion de la bolita utilizamos el atributo centerx para centrar la bolita horizontalmente en pantalla
+y el atributo centery para centrar verticamente en pantalla
+No obstante podemos entrar con un solo atributo llamado center que recibe una tupla,
+Ademas podemos posicionar utilizando cualquiera de los 4 lados:
+verticalmente con top o bottom 
+y horizontalmente con left o right
+Se necesitan dos de estos atributos para posicionar el rectangulo:
+por ejemplo top y right
+Es importante mencionar que si especificas left o right solamente se usara el ultimo que se haya asignado lo mismo con top y bottom
+
+Si quieres especificar la posicion con un solo punto usando una tupla(x,y)
+tienes atrbutos para las 4 esquinas  topleft, topright, bottomleft y bottomright
+
+Otros atributos utiles para centrar, que reciben una tupla(x,y) son los puntos al centro de cada uno de los lados:
+midtop, midright,midbottom y midleft
+
+como ves podemos posicionar nuestro rectangulo de varias maneras solo recuerda:
+que hay algunos atributos que reciben un solo numero y otros que esperan una tupla
+
+        Escalares           Tuplas
+        _________           _________
+        x                   size
+        y                   center
+        width(ancho)        topleft
+        height(alto)        topright
+        centerx             bottomleft
+        centery             bottomright
+        top                 midtop
+        right               midright
+        bottom              midleft
+        left                midbottom
