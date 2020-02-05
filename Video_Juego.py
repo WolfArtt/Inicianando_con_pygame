@@ -37,6 +37,22 @@ class Bolita(pygame.sprite.Sprite):
         # Mover en base a posicion actual y velocidad
         self.rect.move_ip(self.speed)
 
+class Paleta(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+
+        # Cargar Imagen
+        self.image = pygame.image.load('imagenes/paleta.png')
+        
+        # Obtener rectangulo de la imagen
+        self.rect = self.image.get_rect()
+
+        # Posicion inicial centrada en X
+        self.rect.midbottom = (ancho/2, alto - 20)
+
+        # Establecer velocidad inicial
+        self.speed = [0,0]
+
 
 # Iniciando pantalla
 pantalla = pygame.display.set_mode((ancho,alto))
@@ -48,6 +64,7 @@ pygame.display.set_caption('Juego de ladrillos')
 reloj = pygame.time.Clock()
 
 bolita = Bolita()
+paleta = Paleta()
 
 while True:
     #Establecer FPS
@@ -66,6 +83,9 @@ while True:
 
     #Dibujar bolita en pantalla
     pantalla.blit(bolita.image, bolita.rect)
+
+    #Dibujar paleta del jugador en pantalla
+    pantalla.blit(paleta.image, paleta.rect)
 
     #Actualizar los elementos en pantalla
     pygame.display.flip()

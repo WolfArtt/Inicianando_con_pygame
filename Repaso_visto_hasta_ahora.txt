@@ -99,3 +99,17 @@ Para que haya coliciones debe haber movimiento
                 y hacemos lo mismo para evitar la fuga de la bolita por la izquierda asi que aplicamos la compracion de <= 0
 
         Y asi solucionamos nuestros primeros errores de colisiones para nuestro Juego :3
+
+
+#########################################################################################
+
+
+--- El jugador y su movimiento video 10---
+
+Crearemos la paleta del jugador y la moveremos con las  flechas del teclado
+
+Nos creamos la clase paleta 
+La paleta la colocamos centrada en eje x y 20 pixeles sobre el borde inferior de la pantalla
+con el atributo:    self.rect.mibottom=(ancho/2, alto -20)
+Como por el momento el jugador no se movera la velocidad sera de [0,0]
+Luego dibujamos la paleta del jugador en pantalla
