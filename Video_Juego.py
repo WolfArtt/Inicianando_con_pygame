@@ -53,6 +53,21 @@ class Paleta(pygame.sprite.Sprite):
         # Establecer velocidad inicial
         self.speed = [0,0]
 
+    def update(self, evento):
+        # Buscar si se presiono flecha izquierda
+        if evento.key == pygame.K_LEFT and self.rect.left > 0:
+            self.speed = [-5,0]
+
+        # Si se presiona la flecha derecha
+        elif evento.key == pygame.K_RIGHT and self.rect.right < ancho:
+            self.speed = [5,0]   
+
+        # Si no presionamos nada
+        else:
+            self.speed = [0,0]
+    
+          # Mover en base a posicion actual y velocidad
+        self.rect.move_ip(self.speed)
 
 # Iniciando pantalla
 pantalla = pygame.display.set_mode((ancho,alto))
@@ -62,6 +77,8 @@ pygame.display.set_caption('Juego de ladrillos')
 
 # Crear objeto reloj
 reloj = pygame.time.Clock()
+# Ajustar repeticion de evento de la tecla precionada
+pygame.key.set_repeat(30)
 
 bolita = Bolita()
 paleta = Paleta()
@@ -74,6 +91,10 @@ while True:
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             sys.exit()
+
+        # Buscar eventos por teclado
+        elif evento.type == pygame.KEYDOWN:
+            paleta.update(evento)
 
     #Actualizar posicion de la bolita
     bolita.update()     

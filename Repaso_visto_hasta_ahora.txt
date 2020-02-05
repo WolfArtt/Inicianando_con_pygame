@@ -113,3 +113,27 @@ La paleta la colocamos centrada en eje x y 20 pixeles sobre el borde inferior de
 con el atributo:    self.rect.mibottom=(ancho/2, alto -20)
 Como por el momento el jugador no se movera la velocidad sera de [0,0]
 Luego dibujamos la paleta del jugador en pantalla
+
+Ahora vamos a nuestro ciclo de eventos y agregamos un elif para buscar eventos por teclado dados como un argumento
+Luego nos vamos a nuestra clase paleta y creamos nuestra funcion update y recibe como parametro eventos
+el evento tiene el atributo key (que nos permite saber que tecla fue presionada)
+si se presiono la flecha izquierda establecemos la velocidad en(-5,0)
+en caso de que se presione la flecha derecha establecemos la velocidad en (5,0)
+con la linea de codigo siguiente: 
+        * self.speed = [5,0]
+copiamos el metodo -self.rect.move_ip(self.speed)- de la clase bolita en nuestra clase paleta.
+
+Ya movemos la paleta por pantalla pero solo una vez, tenemos que soltar y volver a precionar para continuar el movimiento de la paleta.
+Ajustaremos la repeticion del evento de tecla presionada con el metodo:
+        * pygame.key.set_repeat(30)     30 = al retraso de la repeticion en milisegundos entre cada repeticion(podemos cambiar el nro escalar a otro que queramos)
+
+Para evitar que la paleta salga de la pantalla nos vamos a  nuestra clase paleta en la funcion update
+    y en nuestro if le agregamos que si va a llado izquierdo siempre sea mayor a 0. Es decir que si es menor a cero ya no pasara la pantalla
+    al elif agregamos que si va a la derecha siempre sea menor al ancho(ancho de la pantalla)
+
+### EN ESTA LECCION APRENDIMOS ###
+
+    Que hay un tipo de evento llamado pygame.KEYDOWN que se produce al precionar una tecla
+    y su evento tiene un atributo llamado key para saber que tecla fue precionada
+    y se puede generar el evento KEYDOWN cada cierto tiempo si configuramos el retraso con: 
+        * pygame.key.set_repeat(retaso_ms)
