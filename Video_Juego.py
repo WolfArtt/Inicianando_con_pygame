@@ -3,10 +3,10 @@ Iniciamos a hacer nuestro juego y comenzamos con la pantalla de juego
 
 """
 import pygame
-import sys
+import sys # para usar exit()
 
-ancho = 640
-alto = 480
+ancho = 640 # ancho pantalla
+alto = 480  # alto pantalla
 color_azul = (0,0,64) # Color azul para el fondo
 
 class Bolita(pygame.sprite.Sprite):
@@ -87,14 +87,24 @@ class Ladrillo(pygame.sprite.Sprite):
         self.rect.topleft = posicion
 
 class Muro(pygame.sprite.Group):
-    def __init__(self):
+    def __init__(self, cantidad_ladrillos):
         pygame.sprite.Group.__init__(self)
-
-        ladrillo1 = Ladrillo((0,0))
-        ladrillo2= Ladrillo((100,100))
-
-        self.add(ladrillo1)
-        self.add(ladrillo2)
+        
+        # Definimos la posicion en x y y 
+        pos_x = 0
+        pos_y = 20
+        ''' Borramos nuestros 2 constructores creados y 
+            agregaremos un for para crear mas Ladrillos
+        '''
+        for i in range(cantidad_ladrillos):
+            ladrillo = Ladrillo((pos_x,pos_y))  # Llamamos a nuestra clase Ladrillo con parametros posicion
+            self.add(ladrillo)  # Aniadimos los ladrillos
+            
+            pos_x += ladrillo.rect.width    # Decidimos en que posicion iran nuestros ladrillos, aca le decimos que iran en lo ancho(width)
+            # Con este if acomodamos nuestros ladrillos, cada vez que no haya espacio en el ancho e ira un espacio abajo para acomodarse
+            if pos_x >= ancho:  # Con este if acomodamos nuestros ladrillos, cada vez que no haya espacio en el ancho e ira un espacio abajo para acomodarse
+                pos_x = 0
+                pos_y += ladrillo.rect.height   # Toma la posicion en el alto(heigth) el siguiente ladrillo es decir por debajo de el 1er ladrillo a la izquierda
 
 # Iniciando pantalla
 pantalla = pygame.display.set_mode((ancho,alto))
@@ -110,7 +120,7 @@ pygame.key.set_repeat(30)
 # Lamamos a nuestros constructores de las clases
 bolita = Bolita()
 paleta = Paleta()
-muro = Muro()
+muro = Muro(50)
 
 while True:
     #Establecer FPS

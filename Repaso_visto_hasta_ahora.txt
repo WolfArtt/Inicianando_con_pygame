@@ -148,3 +148,5 @@ Comenzamos clonando la clase bolita y le cambiamos el nombre a la clase a Ladril
 borramos las coordenadas en donde apareceran los ladrillos, y tambien la velocidad
 Luego nos creamos una nueva clase llamada Muro() y dentro creamos constructores de la clase ladrillos
 hacemos la prueba colocando dos ladrillos en las coodenadas(0,0) y el otro en las coordenadas(100,100)
+Haremos el muro de ladrillos con un for, llamando a la clase ladrillos
+hacemos que nuestros ladrillos se acomoden horizontalmente y verticalmente en la pantalla
