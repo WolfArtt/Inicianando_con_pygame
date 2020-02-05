@@ -136,8 +136,16 @@ while True:
             paleta.update(evento)
 
     # Actualizar posicion de la bolita
-    bolita.update()     
+    bolita.update()
 
+    # Colision entre bolita y jugador
+    if pygame.sprite.collide_rect(bolita, paleta):
+         bolita.speed[1] = -bolita.speed[1]
+
+    # Colision bolita con el Muro
+    lista = pygame.sprite.spritecollide(bolita,muro, True)
+
+    
     # Rellenar pantalla
     pantalla.fill(color_azul)
 

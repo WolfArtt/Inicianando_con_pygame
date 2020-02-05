@@ -153,3 +153,10 @@ hacemos que nuestros ladrillos se acomoden horizontalmente y verticalmente en la
 
 --- En esta clase aprendimos ---
 que existe un contenedor de sprites, al cual podemos añadir elementos con el metodo add y permite dibujar todos los elementos del grupo con una funcion draw
+
+
+##################################################################################################################################################################################
+
+
+--- Coliciones finales (jugador, muro y bolita)
+
