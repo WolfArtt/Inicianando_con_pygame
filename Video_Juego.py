@@ -1,5 +1,6 @@
 """
 Iniciamos a hacer nuestro juego y comenzamos con la pantalla de juego
+
 """
 import pygame
 import sys
@@ -9,6 +10,7 @@ alto = 480
 color_azul = (0,0,64) # Color azul para el fondo
 
 class Bolita(pygame.sprite.Sprite):
+    #Constructor de bolita
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
 
@@ -38,6 +40,7 @@ class Bolita(pygame.sprite.Sprite):
         self.rect.move_ip(self.speed)
 
 class Paleta(pygame.sprite.Sprite):
+    #Constructor de paleta
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
 
@@ -69,6 +72,30 @@ class Paleta(pygame.sprite.Sprite):
           # Mover en base a posicion actual y velocidad
         self.rect.move_ip(self.speed)
 
+class Ladrillo(pygame.sprite.Sprite):
+    #Constructor de ladrillo
+    def __init__(self, posicion):
+        pygame.sprite.Sprite.__init__(self)
+
+        # Cargar Imagen
+        self.image = pygame.image.load('imagenes/ladrillo.png')
+        
+        # Obtener rectangulo de la imagen
+        self.rect = self.image.get_rect()
+
+        # Posicion inicial, provista externamente
+        self.rect.topleft = posicion
+
+class Muro(pygame.sprite.Group):
+    def __init__(self):
+        pygame.sprite.Group.__init__(self)
+
+        ladrillo1 = Ladrillo((0,0))
+        ladrillo2= Ladrillo((100,100))
+
+        self.add(ladrillo1)
+        self.add(ladrillo2)
+
 # Iniciando pantalla
 pantalla = pygame.display.set_mode((ancho,alto))
 
@@ -80,8 +107,10 @@ reloj = pygame.time.Clock()
 # Ajustar repeticion de evento de la tecla precionada
 pygame.key.set_repeat(30)
 
+# Lamamos a nuestros constructores de las clases
 bolita = Bolita()
 paleta = Paleta()
+muro = Muro()
 
 while True:
     #Establecer FPS
@@ -96,17 +125,20 @@ while True:
         elif evento.type == pygame.KEYDOWN:
             paleta.update(evento)
 
-    #Actualizar posicion de la bolita
+    # Actualizar posicion de la bolita
     bolita.update()     
 
     # Rellenar pantalla
     pantalla.fill(color_azul)
 
-    #Dibujar bolita en pantalla
+    # Dibujar bolita en pantalla
     pantalla.blit(bolita.image, bolita.rect)
 
-    #Dibujar paleta del jugador en pantalla
+    # Dibujar paleta del jugador en pantalla
     pantalla.blit(paleta.image, paleta.rect)
 
-    #Actualizar los elementos en pantalla
+    # Dibujar Ladrillos
+    muro.draw(pantalla)
+
+    # Actualizar los elementos en pantalla
     pygame.display.flip()

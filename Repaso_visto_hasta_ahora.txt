@@ -137,3 +137,14 @@ Para evitar que la paleta salga de la pantalla nos vamos a  nuestra clase paleta
     y su evento tiene un atributo llamado key para saber que tecla fue precionada
     y se puede generar el evento KEYDOWN cada cierto tiempo si configuramos el retraso con: 
         * pygame.key.set_repeat(retaso_ms)
+
+
+##################################################################################################################################################################################
+
+
+--- Comienzamos a hacer el muro ---
+
+Comenzamos clonando la clase bolita y le cambiamos el nombre a la clase a Ladrillo
+borramos las coordenadas en donde apareceran los ladrillos, y tambien la velocidad
+Luego nos creamos una nueva clase llamada Muro() y dentro creamos constructores de la clase ladrillos
+hacemos la prueba colocando dos ladrillos en las coodenadas(0,0) y el otro en las coordenadas(100,100)
