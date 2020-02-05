@@ -21,19 +21,36 @@ class Bolita(pygame.sprite.Sprite):
         self.rect.centerx = ancho/2
         self.rect.centery = alto/2
 
+        # Establecer velocidad inicial
+        self.speed = [3,3]
+
+    def update(self):
+        # Mover en base a posicion actual y velocidad
+        self.rect.move_ip(self.speed)
+
+
 # Iniciando pantalla
 pantalla = pygame.display.set_mode((ancho,alto))
 
 # Cambiaremos titulo de pantalla
 pygame.display.set_caption('Juego de ladrillos')
 
+# Crear objeto reloj
+reloj = pygame.time.Clock()
+
 bolita = Bolita()
 
 while True:
+    #Establecer FPS
+    reloj.tick(60)
+
     # Revisar todos los eventos
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             sys.exit()
+
+    #Actualizar posicion de la bolita
+    bolita.update()     
 
     #Dibujar bolita en pantalla
     pantalla.blit(bolita.image, bolita.rect)

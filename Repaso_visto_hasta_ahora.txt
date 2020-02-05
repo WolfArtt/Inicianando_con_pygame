@@ -15,7 +15,7 @@ y la esquina inferior derecha de la pantalla corresponde a las coordenadas (anch
 ????????????????????????????????????????????????????????????????????????
 
                     ---video 8---
-                    
+
 Comenzamos a ver los atributos de un rectangulo
 
 Al agregar la bolita sin definir sus coordenadas se coloco en la posicion (0,0) de la pantalla 
@@ -55,3 +55,31 @@ que hay algunos atributos que reciben un solo numero y otros que esperan una tup
         right               midright
         bottom              midleft
         left                midbottom
+
+#########################################################################################
+
+---Coliciones video 9---
+
+Para que haya coliciones debe haber movimiento
+- Volvemos al constructor de bolita y agregamos la velocidad
+        self.speed [x,y]
+    como una lista que indica cuantos pixeles se movera en x y cuantos en Y
+- Despues definimos el metodo:
+        def update(self)
+    cuya tarea sera mover la bolita hacia la nueva posicion,
+    en base a su posicion actual, y su velocidad con la: funcion move_ip
+
+- Dentro del ciclo, antes de dibujar la bolita mandamos a llamar al metodo: update de la bolita
+    Despues de hacer correr nuestro script vemos tres  cosas:
+        1. el movimiento ocurrio muy rapido, pues dejo una linea amarilla
+        2. por que? hay una linea amarilla
+        3. donde esta la bolita?
+    Explicando:
+        1. el movimiento ocurrio muy rapido pues ocurre a la velocidad que puede [procesarlo la computadora
+                * Para monitorear el tiempo del juego pygame ofrece un objeto reloj
+                    pygame.time.Clock()
+                Ya que tenemos el reloj podemos establecer los frames por segundo justo al inicio de nuestro ciclo infinito
+                con el metodo: reloj.tick(60)
+                este 60 quiere decir que nuestro juego correra como maximo 60 veces por segundo
+                Ya podemos observar como se va construyendo la estela de nuestra bolita
+        2. 
