@@ -160,3 +160,8 @@ que existe un contenedor de sprites, al cual podemos añadir elementos con el me
 
 --- Coliciones finales (jugador, muro y bolita)
 
+La funcion pygame.sprite.collide_rect(sprite1,sprite2) nos indica si hubo colision entre dos sprite provistos
+aunque no nos dice como ni cuando
+por su parte: la funcion spritecollide(sprite,grupo,eliminarDeGrupo) nos entrega una lista de sprite dentro de un grupo que colisionan
+con otro sprite y nos permite decidir si eliminamos dichos elementos o no. 
+Aunque tambien podemos eliminar manualmente de un grupo con la funcion remove(sprite)

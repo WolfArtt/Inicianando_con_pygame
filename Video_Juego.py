@@ -120,7 +120,7 @@ pygame.key.set_repeat(30)
 # Lamamos a nuestros constructores de las clases
 bolita = Bolita()
 paleta = Paleta()
-muro = Muro(50)
+muro = Muro(100)
 
 while True:
     #Establecer FPS
@@ -143,8 +143,15 @@ while True:
          bolita.speed[1] = -bolita.speed[1]
 
     # Colision bolita con el Muro
-    lista = pygame.sprite.spritecollide(bolita,muro, True)
-
+    lista = pygame.sprite.spritecollide(bolita,muro, False)
+    if lista:
+        ladrillo = lista[0]
+        cx = bolita.rect.centerx
+        if cx < ladrillo.rect.left or cx > ladrillo.rect.right:
+            bolita.speed[0] = -bolita.speed[0]
+        else:
+            bolita.speed[1] = -bolita.speed[1]
+        muro.remove(ladrillo)
     
     # Rellenar pantalla
     pantalla.fill(color_azul)
