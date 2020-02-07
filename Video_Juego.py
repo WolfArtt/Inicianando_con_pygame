@@ -4,10 +4,13 @@ Iniciamos a hacer nuestro juego y comenzamos con la pantalla de juego
 """
 import pygame
 import sys # para usar exit()
+import time # Para usar time
 
 ancho = 640 # ancho pantalla
 alto = 480  # alto pantalla
 color_azul = (0,0,64) # Color azul para el fondo
+
+pygame.init()
 
 class Bolita(pygame.sprite.Sprite):
     #Constructor de bolita
@@ -29,7 +32,7 @@ class Bolita(pygame.sprite.Sprite):
 
     def update(self):
         #Evitar que salga por debajo la bolita
-        if self.rect.bottom >= alto or self.rect.top <= 0:
+        if self.rect.top <= 0: # Borramos la parte en que la bolita rebota de la parte inferior
             self.speed[1] = -self.speed[1]
 
         #Evitar que salga por la derecha
@@ -106,6 +109,19 @@ class Muro(pygame.sprite.Group):
                 pos_x = 0
                 pos_y += ladrillo.rect.height   # Toma la posicion en el alto(heigth) el siguiente ladrillo es decir por debajo de el 1er ladrillo a la izquierda
 
+# Funcion llamada tras dejar ir la bolita
+def juego_terminado():
+    fuente = pygame.font.SysFont('Arial', 42)
+    texto = fuente.render('Juego Terminado Perdedor', True, (255,255,255))
+    texto_rect = texto.get_rect()
+    texto_rect.center = [ancho/2 , alto/2]
+    pantalla.blit(texto, texto_rect)
+    pygame.display.flip()
+    # Pausar por 3 segundos
+    time.sleep(3)
+    # Salir
+    sys.exit()
+
 # Iniciando pantalla
 pantalla = pygame.display.set_mode((ancho,alto))
 
@@ -153,6 +169,10 @@ while True:
             bolita.speed[1] = -bolita.speed[1]
         muro.remove(ladrillo)
     
+    # Rellenar la pantalla
+    if bolita.rect.top > alto:
+        juego_terminado()  # El juego termina llamando una funcion
+
     # Rellenar pantalla
     pantalla.fill(color_azul)
 
