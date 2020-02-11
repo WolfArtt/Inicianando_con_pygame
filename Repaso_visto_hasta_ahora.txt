@@ -180,3 +180,7 @@ y necesitamos llamar la funcion pygame.init() para poder utilizar las fuentes mu
 ##################################################################################################################################################################################
 
 
+--- Sistema de puntuacion ---
+
+Agregamos la puntuacion en el costado superior izquierdo
+con cinco ceros en color blanco

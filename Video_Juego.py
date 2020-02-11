@@ -9,6 +9,7 @@ import time # Para usar time
 ancho = 640 # ancho pantalla
 alto = 480  # alto pantalla
 color_azul = (0,0,64) # Color azul para el fondo
+color_blanco = (255,255,255) # Color blanco, para textos
 
 pygame.init()
 
@@ -112,7 +113,7 @@ class Muro(pygame.sprite.Group):
 # Funcion llamada tras dejar ir la bolita
 def juego_terminado():
     fuente = pygame.font.SysFont('Arial', 42)
-    texto = fuente.render('Juego Terminado Perdedor', True, (255,255,255))
+    texto = fuente.render('Juego Terminado Perdedor', True, color_blanco)
     texto_rect = texto.get_rect()
     texto_rect.center = [ancho/2 , alto/2]
     pantalla.blit(texto, texto_rect)
@@ -121,6 +122,13 @@ def juego_terminado():
     time.sleep(3)
     # Salir
     sys.exit()
+
+def mostrar_puntuacion():
+    fuente = pygame.font.SysFont('Consolas', 20)
+    texto = fuente.render(str(puntuacion).zfill(5), True, color_blanco)
+    texto_rect = texto.get_rect()
+    texto_rect.topleft = [0,0]
+    pantalla.blit(texto, texto_rect)
 
 # Iniciando pantalla
 pantalla = pygame.display.set_mode((ancho,alto))
@@ -137,6 +145,7 @@ pygame.key.set_repeat(30)
 bolita = Bolita()
 paleta = Paleta()
 muro = Muro(100)
+puntuacion = 0
 
 while True:
     #Establecer FPS
@@ -168,6 +177,7 @@ while True:
         else:
             bolita.speed[1] = -bolita.speed[1]
         muro.remove(ladrillo)
+        puntuacion += 10
     
     # Rellenar la pantalla
     if bolita.rect.top > alto:
@@ -175,6 +185,9 @@ while True:
 
     # Rellenar pantalla
     pantalla.fill(color_azul)
+
+    # Mostrar puntuacion
+    mostrar_puntuacion()
 
     # Dibujar bolita en pantalla
     pantalla.blit(bolita.image, bolita.rect)
