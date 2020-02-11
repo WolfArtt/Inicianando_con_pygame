@@ -130,6 +130,14 @@ def mostrar_puntuacion():
     texto_rect.topleft = [0,0]
     pantalla.blit(texto, texto_rect)
 
+def mostrar_vidas():
+    fuente = pygame.font.SysFont('Consolas', 20)
+    cadena = "Vidas: " + str(vidas).zfill(2)
+    texto = fuente.render(cadena, True, color_blanco)
+    texto_rect = texto.get_rect()
+    texto_rect.topright = [ancho,0]
+    pantalla.blit(texto, texto_rect)    
+
 # Iniciando pantalla
 pantalla = pygame.display.set_mode((ancho,alto))
 
@@ -146,6 +154,8 @@ bolita = Bolita()
 paleta = Paleta()
 muro = Muro(100)
 puntuacion = 0
+vidas = 3
+esperando_saque = True
 
 while True:
     #Establecer FPS
@@ -160,8 +170,18 @@ while True:
         elif evento.type == pygame.KEYDOWN:
             paleta.update(evento)
 
+            if esperando_saque == True and evento.key == pygame.K_SPACE:
+                esperando_saque = False
+                if bolita.rect.centerx < ancho/2:
+                    bolita.speed = [3,-3]
+                else:
+                    bolita.speed = [-3,-3]
+
     # Actualizar posicion de la bolita
-    bolita.update()
+    if esperando_saque == False:
+        bolita.update()
+    else:
+        bolita.rect.midbottom = paleta.rect.midtop
 
     # Colision entre bolita y jugador
     if pygame.sprite.collide_rect(bolita, paleta):
@@ -179,15 +199,19 @@ while True:
         muro.remove(ladrillo)
         puntuacion += 10
     
-    # Rellenar la pantalla
+    # Revisar si la bolita sale de la pantalla
     if bolita.rect.top > alto:
-        juego_terminado()  # El juego termina llamando una funcion
+        vidas -= 1 # Decrementar vidas
+        esperando_saque = True
 
     # Rellenar pantalla
     pantalla.fill(color_azul)
 
     # Mostrar puntuacion
     mostrar_puntuacion()
+
+    # Mostrar vidas
+    mostrar_vidas()
 
     # Dibujar bolita en pantalla
     pantalla.blit(bolita.image, bolita.rect)
@@ -200,3 +224,6 @@ while True:
 
     # Actualizar los elementos en pantalla
     pygame.display.flip()
+
+    if vidas <= 0:
+        juego_terminado()  # El juego termina llamando una funcion
