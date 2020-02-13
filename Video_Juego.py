@@ -13,6 +13,31 @@ color_blanco = (255,255,255) # Color blanco, para textos
 
 pygame.init()
 
+#Clase de escena
+class Escena:
+    def __init__(self): # Constructor
+        "Inicializacion"
+        self.proxima_escena = False
+        self.jugando = True
+        #pass           Para indicar que posteriores clases implementaran el metodo
+    
+    def leer_eventos(self, eventos):
+        "Lee la lista de todos los eventos"
+        pass
+    
+    def actualizar(self):
+        "Calculos y logica"
+        pass
+
+    def dibujar(self, pantalla):
+        "Dibuja los objetos en pantalla"
+        pass
+
+    def cambiar_escena(self, escena):
+        "Selecciona la nueva escena a ser desplegada"
+        self.proxima_escena = escena
+
+#Clases para cada uno de nuestros dibujos
 class Bolita(pygame.sprite.Sprite):
     #Constructor de bolita
     def __init__(self):
