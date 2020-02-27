@@ -13,7 +13,7 @@ color_blanco = (255,255,255) # Color blanco, para textos
 
 pygame.init()
 
-#Clase de escena
+#Clase escena definimos la estructura basica de nuestras escenas
 class Escena:
     def __init__(self): # Constructor
         "Inicializacion"
@@ -36,6 +36,55 @@ class Escena:
     def cambiar_escena(self, escena):
         "Selecciona la nueva escena a ser desplegada"
         self.proxima_escena = escena
+
+# Clase Director para controlar nuestras escenas
+class Director:
+    def __init__(self, titulo = "", res = (ancho,alto)):    # Mandar titulo y la referencia de la pantalla
+        pygame.init()
+        # Inicializando pantalla
+        self.pantalla = pygame.display.set_mode(res)
+        # Configurar titulo de pantall
+        self.pygame.display.set_caption(titulo)
+        # Crear el reloj
+        reloj = pygame.time.Clock()
+        self.escena = None  # Variable para guardar la escena actual para ser desplegada
+        self.escenas = {}   # Diccionario para guardar escenas del juego
+
+    def ejecutar(self, escena_inicial, fps = 60):
+        self.escena = self.escenas[escena_inicial]
+        jugando = True
+        while jugando:
+            self.reloj.tick(fps)
+            eventos = pygame.event.get()
+            # Revisar todos los eventos
+            for evento in eventos:
+                if evento.type == pygame.QUIT:
+                    jugando = False
+
+            self.escena.leer_eventos(eventos)
+            self.escena.actualizar()
+            self.escena.dibujar(self.pantalla)
+
+            self.elegirEscena(self.escena.proxima_escena)
+
+            if jugando:
+                jugando = self.escena.jugando
+
+            pygame.display.flip()
+
+        time.sleep(3)
+
+    def elegirEscena(self, proxima_escena):
+        if proxima_escena:
+            if proxima_escena not in self.escenas:
+                self.agregarEscena(proxima_escena)
+            self.escena = self.escenas[proxima_escena]
+
+    def agregarEscena(self, escena):
+        escenaClase = 'Escena'+escena
+        escenaObj = globals()[escenaClase]
+        self.escenas[escenas] = escenaObj();
+
 
 #Clases para cada uno de nuestros dibujos
 class Bolita(pygame.sprite.Sprite):
@@ -186,10 +235,7 @@ while True:
     #Establecer FPS
     reloj.tick(60)
 
-    # Revisar todos los eventos
-    for evento in pygame.event.get():
-        if evento.type == pygame.QUIT:
-            sys.exit()
+   
 
         # Buscar eventos por teclado
         elif evento.type == pygame.KEYDOWN:
